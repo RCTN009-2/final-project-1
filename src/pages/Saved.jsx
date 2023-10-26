@@ -2,8 +2,10 @@ import Table  from "../components/Table";
 
 const Saved = () => {
   return (
-    <Table />
+    <Table/>
   )
-}
+};
 
-export default Saved
+  
+
+export default Saved;

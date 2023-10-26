@@ -9,18 +9,28 @@ import {
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { getNews } from "../redux/FetchAPI";
+import { saveNews } from "../redux/Save";
 
 const NewsComponent = ({ title, category }) => {
-  const [articles, setArticles] = useState([]);
+const {article} = useSelector((state) => state.getData)
+const data = useSelector((state) => console.log(state))
+
+const dispatch = useDispatch()
+
+const handleClick =(data) => {
+  try{
+    dispatch(saveNews(data))
+  }catch(error){
+    console.error(error);
+  }
+}
 
   useEffect(() => {
-    setArticles([]);
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=${category}&apiKey=c9e6de4127a040c59d479b3be8928869`
-        );
-        setArticles(response.data.articles);
+        dispatch(getNews(category))
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -37,8 +47,8 @@ const NewsComponent = ({ title, category }) => {
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-8 mt-8">
-          {articles.length > 0 ? (
-            articles.map((article, index) => (
+          {article.length > 0 ? (
+            article.map((article, index) => (
               <Card key={index} className="w-1/2 lg:w-1/4 mb-6">
                 <CardBody>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
@@ -52,7 +62,7 @@ const NewsComponent = ({ title, category }) => {
                       Read More
                     </Button>
                   </a>
-                  <Button color="blue">Save</Button>
+                  <Button color="blue" onClick={() => handleClick(article)}>Save</Button>
                 </CardFooter>
               </Card>
             ))

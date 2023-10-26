@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Table = () => {
+  
+  const {article} = useSelector((state) => state.saveData)
+
   return (
     <div className='w-full h-screen bg-gradient-to-b from-blue-gray-900 to-blue-gray-800'>
       <div className=' p-8 rounded-md w-full mx-auto pt-32'>
@@ -42,28 +46,31 @@ const Table = () => {
               <thead>
                 <tr>
                   <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
-                    Source
-                  </th>
-                  <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
-                    Tittle
+                    Title
                   </th>
                   <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
                     Description
                   </th>
+                  <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
+                    URL
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-xs'>
-                    <p className='text-gray-900 whitespace-no-wrap'>Ini Sumber Berita</p>
+                {article.map((article, index) =>(
+                <tr key={index}>
+                  <td className='px-5 py-5 border-b borrer-gray-200 bg-white text-xs'>
+                    <p className='text-gray-900 whitespace-no-wrap'>{article.title}</p>
                   </td>
                   <td className='px-5 py-5 border-b border-gray-200 bg-white text-xs'>
-                    <p className='text-gray-900 whitespace-no-wrap'>Ini Judul Berita</p>
+                    <p className='text-gray-900 whitespace-no-wrap'>{article.description}</p>
                   </td>
                   <td className='px-5 py-5 border-b border-gray-200 bg-white text-xs'>
-                    <p className='text-gray-900 whitespace-no-wrap'>Ini Deskripsi Berita</p>
+                    <a className='text-blue-900 whitespace-no-wrap' href={article.url} target='_blank'>Link</a>
                   </td>
                 </tr>
+                ))}
+
               </tbody>
             </table>
           </div>
