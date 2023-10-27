@@ -64,14 +64,12 @@ const NewsComponent = ({ title, category }) => {
                       Read More
                     </Button>
                   </a>
-                  <Button color="blue" onClick={() => handleClick(article)}>
                     {/* check if article.title is exist in savedArticle} */}
                     {savedArticle.find(
                       (savedArticle) => savedArticle.title === article.title
                     )
-                      ? "Unsave"
-                      : "Save"}
-                  </Button>
+                      ? <Button color="red" onClick={() => handleClick(article)}>Unsave</Button>
+                      :   <Button color="blue" onClick={() => handleClick(article)}>Save</Button>}
                 </CardFooter>
               </Card>
             ))
