@@ -64,6 +64,7 @@ const NewsComponent = ({ title, category }) => {
                       Read More
                     </Button>
                   </a>
+                  //Change the color in button Save and Unsave
                   {/* check if article.title is exist in savedArticle} */}
                   {savedArticle.find(
                       (savedArticle) => savedArticle.title === article.title
