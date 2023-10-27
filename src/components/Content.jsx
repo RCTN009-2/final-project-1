@@ -14,23 +14,24 @@ import { getNews } from "../redux/FetchAPI";
 import { saveNews } from "../redux/Save";
 
 const NewsComponent = ({ title, category }) => {
-const {article} = useSelector((state) => state.getData)
-const data = useSelector((state) => console.log(state))
+  const data = useSelector((state) => console.log(state));
+  const { article } = useSelector((state) => state.getData);
+  const { article: savedArticle } = useSelector((state) => state.saveData);
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-const handleClick =(data) => {
-  try{
-    dispatch(saveNews(data))
-  }catch(error){
-    console.error(error);
-  }
-}
+  const handleClick = (data) => {
+    try {
+      dispatch(saveNews(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        dispatch(getNews(category))
+        dispatch(getNews(category));
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -38,6 +39,7 @@ const handleClick =(data) => {
 
     fetchData();
   }, [category]);
+
   return (
     <>
       <div className="w-full bg-gradient-to-b from-blue-gray-900 to-blue-gray-800 pb-16 pt-32 md:pt-24">
@@ -62,13 +64,20 @@ const handleClick =(data) => {
                       Read More
                     </Button>
                   </a>
-                  <Button color="blue" onClick={() => handleClick(article)}>Save</Button>
+                  <Button color="blue" onClick={() => handleClick(article)}>
+                    {/* check if article.title is exist in savedArticle} */}
+                    {savedArticle.find(
+                      (savedArticle) => savedArticle.title === article.title
+                    )
+                      ? "Unsave"
+                      : "Save"}
+                  </Button>5
                 </CardFooter>
               </Card>
             ))
           ) : (
             <>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => (
+              {Array.from({ length: 9 }).map(() => (
                 <Loading />
               ))}
             </>

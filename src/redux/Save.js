@@ -18,7 +18,14 @@ const SaveSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(saveNews.fulfilled, (state, action) => {
-      state.article.push(action.payload);
+      const isSaved = state.article.find(
+        (article) => article.title === action.payload.title
+      );
+      isSaved
+        ? (state.article = state.article.filter(
+            (article) => article.title !== action.payload.title // ini kalo unsave
+          ))
+        : state.article.push(action.payload); // ini kalo save
     });
   },
 });
