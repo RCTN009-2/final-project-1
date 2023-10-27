@@ -39,3 +39,8 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.scrollable-table {
+  max-height: 400px; /* Sesuaikan dengan tinggi yang Anda inginkan */
+  overflow-y: auto;
+}

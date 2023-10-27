@@ -1,15 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 
 const Table = () => {
-  
-  const {article} = useSelector((state) => state.saveData)
+  const { article } = useSelector((state) => state.saveData);
 
   return (
-    <div className='w-full h-screen bg-gradient-to-b from-blue-gray-900 to-blue-gray-800'>
-      <div className=' p-8 rounded-md w-full mx-auto pt-32'>
+    <div className="w-full h-screen bg-gradient-to-b from-blue-gray-900 to-blue-gray-800">
+      <div className=" p-8 rounded-md w-full mx-auto pt-32">
         <div className="text-white text-center mb-6">
-            <p className="text-4xl font-bold inline border-b-4 border-gray-500">NEWS SAVED</p>
+          <p className="text-4xl font-bold inline border-b-4 border-gray-500">
+            NEWS SAVED
+          </p>
         </div>
         {/* <div className='flex items-center justify-between pb-6'>
           <div>
@@ -40,37 +41,46 @@ const Table = () => {
             </div>
           </div>
         </div> */}
-        <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
-          <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-            <table className='min-w-full leading-normal shadow-xl'>
+        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div className="inline-block min-w-full shadow rounded-lg overflow-hidden scrollable-table">
+            <table className="min-w-full leading-normal shadow-xl">
               <thead>
                 <tr>
-                  <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
                     Title
                   </th>
-                  <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
                     Description
                   </th>
-                  <th className='px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider'>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
                     URL
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {article.map((article, index) =>(
-                <tr key={index}>
-                  <td className='px-5 py-5 border-b borrer-gray-200 bg-white text-xs'>
-                    <p className='text-gray-900 whitespace-no-wrap'>{article.title}</p>
-                  </td>
-                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-xs'>
-                    <p className='text-gray-900 whitespace-no-wrap'>{article.description}</p>
-                  </td>
-                  <td className='px-5 py-5 border-b border-gray-200 bg-white text-xs'>
-                    <a className='text-blue-900 whitespace-no-wrap' href={article.url} target='_blank'>Link</a>
-                  </td>
-                </tr>
+                {article.map((article, index) => (
+                  <tr key={index}>
+                    <td className="px-5 py-5 border-b borrer-gray-200 bg-white text-xs">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        {article.title}
+                      </p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-xs">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        {article.description}
+                      </p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-xs">
+                      <a
+                        className="text-blue-900 whitespace-no-wrap"
+                        href={article.url}
+                        target="_blank"
+                      >
+                        Link
+                      </a>
+                    </td>
+                  </tr>
                 ))}
-
               </tbody>
             </table>
           </div>

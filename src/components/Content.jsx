@@ -51,7 +51,7 @@ const NewsComponent = ({ title, category }) => {
         <div className="flex flex-wrap justify-center gap-8 mt-8">
           {article.length > 0 ? (
             article.map((article, index) => (
-              <Card key={index} className="w-1/2 lg:w-1/4 mb-6">
+              <Card key={index} className="w-1/2 lg:w-1/4 mb-6" >
                 <CardBody>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     {article.title}
@@ -71,7 +71,7 @@ const NewsComponent = ({ title, category }) => {
                     )
                       ? "Unsave"
                       : "Save"}
-                  </Button>5
+                  </Button>
                 </CardFooter>
               </Card>
             ))
